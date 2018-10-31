@@ -14,4 +14,14 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.telegram:telegrambots:4.1"
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.2'
+    
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'alameda.main'
+        )
+    }
 }

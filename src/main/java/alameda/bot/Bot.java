@@ -1,12 +1,11 @@
 package alameda.bot;
 
+import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Bot extends TelegramLongPollingBot {
@@ -22,10 +21,17 @@ public class Bot extends TelegramLongPollingBot {
         this.abilities = new HashSet<>();
     }
 
+    public Bot(String botToken, String botUserName, DefaultBotOptions botOptions){
+        super(botOptions);
+        this.botToken = botToken;
+        this.botUserName = botUserName;
+        this.abilities = new HashSet<>();
+    }
+
     public Bot(String botToken, String botUserName, Set<Class<? extends Ability>> abilities){
         this.botToken = botToken;
         this.botUserName = botUserName;
-        abilities.forEach(ability -> {this.addAbility(ability);});
+        abilities.forEach(this::addAbility);
     }
 
     public <T extends Ability> void addAbility(Class<T> ability) {

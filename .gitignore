@@ -1,0 +1,7 @@
+*.iml
+./gradle/*
+./build/*
+./classes/*
+./out/*
+./META-INF/*
+./.idea/*
